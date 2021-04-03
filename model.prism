@@ -1,0 +1,53 @@
+ctmc
+
+// op_state
+const int initial   = 0;
+const int connected = 1;
+const int uplink    = 2;
+const int downlink  = 3;
+const int idle      = 4;
+const int paging    = 5;
+const int PSM       = 6;
+
+// transition rate
+const double uplink_pkt_rate    = 1/60; // s^(-1)
+const double downlink_pkt_rate  = 1/60; // s^(-1)
+const double pkt_rate = uplink_pkt_rate + downlink_pkt_rate;
+
+// timer values
+const int timer_RRC             = 10; // s (10 s)
+const int timer_idle            = 30; // s (30 s) (T3324)
+const int timer_eDRX            = 3600; // s (3600 s, 1 hr)
+const int timer_PSM             = 300; // s (300 s)
+//const double paging_cycles = timer_idle / timer_eDRX;   // monitoring control channel
+
+const double time_tx_data       = 0;
+const double time_tx_control    = 0;
+
+// power consumption
+const double energy_uplink      = 0;
+const double energy_downlink    = 0; // 0.1656J ·τdch (per RB)
+const double energy_paging      = 0;
+const double energy_connected   = 0;
+const double energy_PSM         = 0.0108; // µW
+const double energy_idle        = 0.0216; // W
+
+module UE
+
+    op_state : [0..6] init initial;
+    rrc_timer  : [0..timer_RRC]  init timer_RRC;
+    idle_timer : [0..timer_idle] init timer_idle;
+    eDRX_timer : [0..timer_eDRX] init timer_eDRX;
+    PSM_timer  : [0..timer_PSM]  init timer_PSM;
+
+    [] op_state=idle & idle_timer=0 -> 1: (op_state'=PSM);
+    [] op_state=idle & eDRX_timer=0 -> 1: (op_state'=paging);
+
+    //[] s=0 -> 0.5 : (s'=1) + 0.5 : (s'=2);
+    //[] s=1 -> 0.5 : (s'=3) + 0.5 : (s'=4);
+    //[] s=2 -> 0.5 : (s'=5) + 0.5 : (s'=6);
+    //[] s=3 -> 0.5 : (s'=1) + 0.5 : (s'=7) & (d'=1);
+
+endmodule
+
+// vim: set ft=cpp :
