@@ -10,12 +10,12 @@ const int paging    = 5;
 const int PSM       = 6;
 
 // transmission and packet arrival rate
-const int qlen = 500; // queue length in # of packets
 const double uplink_pkt_rate    = 1/180; // s^(-1)
 const double downlink_pkt_rate  = 1/180; // s^(-1)
 const double pkt_rate = uplink_pkt_rate + downlink_pkt_rate;
-const double UL_throughput      = 100; // # pkts/s
-const double DL_throughput      = 100; // # pkts/s
+const int qlen = 500; // queue length in # of packets
+const int UL_throughput         = 100; // # pkts/s
+const int DL_throughput         = 100; // # pkts/s
 
 // timer values
 const int timer_RRC             = 10; // s (10 s)
@@ -44,6 +44,9 @@ module UE
     idle_timer : [0..timer_idle] init timer_idle;
     eDRX_timer : [0..timer_eDRX] init timer_eDRX;
     PSM_timer  : [0..timer_PSM]  init timer_PSM;
+
+    [] op_state=initial
+            -> (op_state'=connected);
 
     [] op_state=idle & idle_timer=0
             -> (op_state'=PSM);
@@ -108,9 +111,16 @@ module UE
                 & (rrc_timer'=(rrc_timer=0 ? 0 : rrc_timer - 1))
             + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
                 & (rrc_timer'=(rrc_timer=0 ? 0 : rrc_timer - 1));
-            // TODO
-            //-> (UL_pkts'=(UL_pkts>=UL_throughput ? UL_pkts-UL_throughput : 0);
-            //-> (DL_pkts'=(DL_pkts>=DL_throughput ? DL_pkts-DL_throughput : 0);
+
+    [] op_state=uplink & UL_pkts=0
+            -> (op_state'=connected) & (rrc_timer'=timer_RRC);
+    [time] op_state=uplink & UL_pkts>0
+            -> (UL_pkts'=(UL_pkts>=UL_throughput ? UL_pkts-UL_throughput : 0));
+
+    [] op_state=downlink & DL_pkts=0
+            -> (op_state'=connected) & (rrc_timer'=timer_RRC);
+    [time] op_state=downlink & DL_pkts>0
+            -> (DL_pkts'=(DL_pkts>=DL_throughput ? DL_pkts-DL_throughput : 0));
 endmodule
 
 rewards "total_time"
