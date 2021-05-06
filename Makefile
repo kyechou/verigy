@@ -2,11 +2,12 @@ all: build
 
 #-exportvector "vector"
 #-exportmodel ".dot"
+#-exporttransdot "transitions.dot" \
+#-exporttransdotstates "transitions-states.dot"
 build: ctmc.prism
-	prism $< \
-		-exportresults "results.csv:csv" \
-		-exporttransdot "transitions.dot" \
-		-exporttransdotstates "transitions-states.dot"
+	prism $< -mtbdd -exportresults "results.csv:csv" \
+		-exportstaterewards staterewards \
+		-exporttransrewards transrewards
 
 clean:
 	-@rm -rf *.csv *.dot
