@@ -1,0 +1,129 @@
+pta
+
+// op_state
+const int initial   = 0;
+const int connected = 1;
+const int uplink    = 2;
+const int downlink  = 3;
+const int idle      = 4;
+const int paging    = 5;
+const int PSM       = 6;
+
+// transmission and packet arrival rate
+const double uplink_pkt_rate    = 1/180; // s^(-1)
+const double downlink_pkt_rate  = 1/180; // s^(-1)
+const double pkt_rate = uplink_pkt_rate + downlink_pkt_rate;
+const int qlen = 500; // queue length in # of packets
+const int UL_throughput         = 100; // # pkts/s
+const int DL_throughput         = 100; // # pkts/s
+
+// timer values
+const int timer_RRC             = 10; // s (10 s)
+const int timer_idle            = 30; // s (30 s) (T3324)
+const int timer_eDRX            = 3600; // s (3600 s, 1 hr)
+const int timer_PSM             = 300; // s (300 s) (T3412)
+//const double paging_cycles = timer_idle / timer_eDRX;   // monitoring control channel
+
+// power consumption
+const double energy_uplink      = 0;
+const double energy_downlink    = 0; // 0.1656J ·τdch (per RB)
+const double energy_paging      = 0;
+const double energy_connected   = 0;
+const double energy_PSM         = 0.0108; // µW
+const double energy_idle        = 0.0216; // W
+//const double energy
+
+module UE
+    op_state : [0..6] init initial;
+    prev_state : [0..6] init initial; // previous state for paging
+    UL_req : bool init false;       // UL grant requested
+    UL_pkts : [0..qlen] init 0; // UL pkts available
+    DL_pkts : [0..qlen] init 0; // DL pkts available
+
+    rrc_timer  : clock;
+    idle_timer : clock;
+    eDRX_timer : clock;
+    PSM_timer  : clock;
+
+    [] op_state=initial
+            -> (op_state'=connected);
+
+    [] op_state=idle & idle_timer=0
+            -> (op_state'=PSM);
+    [] op_state=idle & idle_timer>0 & (eDRX_timer=0 | UL_req=true)
+            -> (op_state'=paging) & (prev_state'=idle);
+    [time] op_state=idle & idle_timer>0 & eDRX_timer>0 & UL_req=false
+            -> uplink_pkt_rate : (UL_req'=true) & (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
+                & (idle_timer'=(idle_timer=0 ? 0 : idle_timer-1))
+                & (eDRX_timer'=(eDRX_timer=0 ? 0 : eDRX_timer-1))
+            + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
+                & (idle_timer'=(idle_timer=0 ? 0 : idle_timer-1))
+                & (eDRX_timer'=(eDRX_timer=0 ? 0 : eDRX_timer-1));
+
+    [] op_state=PSM & PSM_timer=0 // PSM expires; leave PSM cycle
+            -> (op_state'=paging) & (prev_state'=PSM);
+    [] op_state=PSM & PSM_timer>0 & UL_req=true
+            -> (op_state'=paging) & (prev_state'=PSM);
+    [time] op_state=PSM & PSM_timer>0 & UL_req=false
+            -> uplink_pkt_rate : (UL_req'=true) & (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
+                & (PSM_timer'=(PSM_timer=0 ? 0 : PSM_timer-1))
+            + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
+                & (PSM_timer'=(PSM_timer=0 ? 0 : PSM_timer-1));
+
+    [] op_state=paging & prev_state=idle & UL_req=false & DL_pkts=0
+            -> (op_state'=prev_state);
+    [] op_state=paging & prev_state=idle & UL_req=true & DL_pkts=0
+            -> (UL_req'=false) & (op_state'=connected);
+    [] op_state=paging & prev_state=idle & UL_req=true & DL_pkts=0
+            -> (UL_req'=false) & (op_state'=prev_state);
+    [] op_state=paging & prev_state=idle & DL_pkts>0
+            -> (UL_req'=false) & (op_state'=connected);
+
+    [] op_state=paging & prev_state=PSM & PSM_timer=0 & UL_req=false & DL_pkts=0
+            -> (op_state'=idle)
+                & (idle_timer'=timer_idle) & (PSM_timer'=timer_PSM);
+    [] op_state=paging & prev_state=PSM & PSM_timer=0 & UL_req=true & DL_pkts=0
+            -> (UL_req'=false) & (op_state'=connected)
+                & (idle_timer'=timer_idle) & (PSM_timer'=timer_PSM);
+    [] op_state=paging & prev_state=PSM & PSM_timer=0 & UL_req=true & DL_pkts=0
+            -> (UL_req'=false) & (op_state'=idle)
+                & (idle_timer'=timer_idle) & (PSM_timer'=timer_PSM);
+    [] op_state=paging & prev_state=PSM & PSM_timer=0 & DL_pkts>0
+            -> (UL_req'=false) & (op_state'=connected)
+                & (idle_timer'=timer_idle) & (PSM_timer'=timer_PSM);
+
+    [] op_state=paging & prev_state=PSM & PSM_timer>0 & UL_req=false
+            -> (op_state'=prev_state);
+    [] op_state=paging & prev_state=PSM & PSM_timer>0 & UL_req=true
+            -> (UL_req'=false) & (op_state'=connected);
+    [] op_state=paging & prev_state=PSM & PSM_timer>0 & UL_req=true
+            -> (UL_req'=false) & (op_state'=prev_state);
+
+    [] op_state=connected & rrc_timer>=timer_RRC // RRC inactivity timer expires; go idle
+            -> (op_state'=idle) & (idle_timer'=0) & (PSM_timer'=0);
+    [] op_state=connected & rrc_timer<timer_RRC & UL_pkts>0
+            -> (op_state'=uplink);
+    [] op_state=connected & rrc_timer>0 & DL_pkts>0
+            -> (op_state'=downlink);
+    [time] op_state=connected & rrc_timer>0 & UL_pkts=0 & DL_pkts=0
+            -> uplink_pkt_rate : (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
+                & (rrc_timer'=(rrc_timer=0 ? 0 : rrc_timer - 1))
+            + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
+                & (rrc_timer'=(rrc_timer=0 ? 0 : rrc_timer - 1));
+
+    [] op_state=uplink & UL_pkts=0
+            -> (op_state'=connected) & (rrc_timer'=timer_RRC);
+    [time] op_state=uplink & UL_pkts>0
+            -> (UL_pkts'=(UL_pkts>=UL_throughput ? UL_pkts-UL_throughput : 0));
+
+    [] op_state=downlink & DL_pkts=0
+            -> (op_state'=connected) & (rrc_timer'=timer_RRC);
+    [time] op_state=downlink & DL_pkts>0
+            -> (DL_pkts'=(DL_pkts>=DL_throughput ? DL_pkts-DL_throughput : 0));
+endmodule
+
+rewards "total_time"
+    [time] true : 1;
+endrewards
+
+// vim: set ft=cpp :
