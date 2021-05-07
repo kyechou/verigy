@@ -133,12 +133,13 @@ module UE
             -> (op_state'=downlink);
     [time] op_state=connected & rrc_timer>0 & UL_pkts=0 & DL_pkts=0
             -> uplink_pkt_rate : (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
-                & (rrc_timer'=rrc_timer - 1)
+                & (rrc_timer'=rrc_timer-1)
                 & (energy'=energy+energy_connected)
             + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
-                & (rrc_timer'=rrc_timer - 1)
+                & (rrc_timer'=rrc_timer-1)
                 & (energy'=energy+energy_connected)
-            + (1 - uplink_pkt_rate - downlink_pkt_rate) : (rrc_timer'=rrc_timer - 1)
+            + (1 - uplink_pkt_rate - downlink_pkt_rate) :
+                (rrc_timer'=rrc_timer-1)
                 & (energy'=energy+energy_connected);
 
     [] op_state=uplink & UL_pkts=0
@@ -157,14 +158,5 @@ endmodule
 rewards "total_time"
     [time] true : 1;
 endrewards
-
-//rewards "energy"
-//    [time] op_state=idle : energy_idle;
-//    [time] op_state=PSM : energy_PSM;
-//    [time] op_state=connected : energy_connected;
-//    [time] op_state=uplink : energy_uplink;
-//    [time] op_state=downlink : energy_downlink;
-//    [] op_state=paging : energy_paging;
-//endrewards
 
 // vim: set ft=cpp :
