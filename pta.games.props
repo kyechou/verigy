@@ -1,0 +1,9 @@
+// Probabilities of both queues not overflowing
+Pmin=? [ UL_pkts < qlen & DL_pkts < qlen ]
+Pmax=? [ UL_pkts < qlen & DL_pkts < qlen ]
+
+// Probabilities of both queues using less than half of the capacity
+Pmin=? [ UL_pkts / qlen < 0.5 & DL_pkts / qlen < 0.5 ]
+Pmax=? [ UL_pkts / qlen < 0.5 & DL_pkts / qlen < 0.5 ]
+
+// vim: set ft=cpp :

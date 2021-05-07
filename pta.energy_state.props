@@ -1,0 +1,13 @@
+Pmin=? [ UL_pkts < qlen & DL_pkts < qlen ]
+Pmax=? [ UL_pkts < qlen & DL_pkts < qlen ]
+
+Pmin=? [ UL_pkts / qlen < 0.5 & DL_pkts / qlen < 0.5 ]
+Pmax=? [ UL_pkts / qlen < 0.5 & DL_pkts / qlen < 0.5 ]
+
+Pmin=? [ F<=100 energy>=1000000 ]
+Pmax=? [ F<=100 energy>=1000000 ]
+
+//R{"total_time"}=?   [ F <=100 ]
+//R{"energy"}=?       [ F <=100 ]
+
+// vim: set ft=cpp :
