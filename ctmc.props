@@ -1,0 +1,13 @@
+// Probability of both queues not overflowing
+P=? [ UL_pkts < qlen & DL_pkts < qlen ]
+
+// Probability of both queues using less than half of the capacity
+P=? [ UL_pkts / qlen < 0.5 & DL_pkts / qlen < 0.5 ]
+
+// Expected "total_time" cumulative value within 100 model time unit
+R{"total_time"}=? [ C<=100 ]
+
+// Expected "energy" cumulative value within 100 model time unit
+R{"energy"}=? [ C<=100 ]
+
+// vim: set ft=cpp :
