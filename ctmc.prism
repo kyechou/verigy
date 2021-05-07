@@ -10,33 +10,35 @@ const int paging    = 5;
 const int PSM       = 6;
 
 // transmission and packet arrival rate
-const double uplink_pkt_rate    = 1/30; // s^(-1)
-const double downlink_pkt_rate  = 1/30; // s^(-1)
-const double pkt_rate = uplink_pkt_rate + downlink_pkt_rate;
-const int qlen = 500; // queue length in # of packets
-const int UL_throughput         = 100; // # pkts/s
-const int DL_throughput         = 100; // # pkts/s
+const double pkt_rate          ; // s^(-1)
+const double uplink_pkt_rate   = pkt_rate; // s^(-1)
+const double downlink_pkt_rate = pkt_rate; // s^(-1)
+const double total_pkt_rate = uplink_pkt_rate + downlink_pkt_rate;
+const int qlen                 ; // queue length in # of packets
+const int throughput           ; // # pkts/s
+const int UL_throughput        = throughput; // # pkts/s
+const int DL_throughput        = throughput; // # pkts/s
 //const double uplink_req_accept_rate = 1;
 
 // timer values
-const int timer_RRC             = 4; // s (10 s)
-const int timer_idle            = 6; // s (30 s) (T3324)
-const int timer_eDRX            = 10; // s (3600 s, 1 hr)
-const int timer_PSM             = 10; // s (300 s) (T3412)
+const int timer_RRC            ; // s (10 s)
+const int timer_idle           ; // s (30 s) (T3324)
+const int timer_eDRX           ; // s (3600 s, 1 hr)
+const int timer_PSM            ; // s (300 s) (T3412)
 //const double paging_cycles = timer_idle / timer_eDRX;   // monitoring control channel
 
 // power consumption
 //const double energy_uplink      = 0.000735427;
 //const double energy_downlink    = 0.000153771; // 0.1656J ·τdch (per RB)
 //const double energy_paging      = 0.000035486;
-//const double energy_connected   = 0.032+0.214285*0.001*(pkt_rate*2); // 0.032028571;
+//const double energy_connected   = 0.032+0.214285*0.001*(total_pkt_rate*2); // 0.032028571;
 //const double energy_PSM         = 0.0000000108; // W
 //const double energy_idle        = 0.0216; // W
 // 10e-6 W
 const int energy_uplink      = 735;
 const int energy_downlink    = 154;
 const int energy_paging      = 35;
-const int energy_connected   = 32000+round(214*(pkt_rate*2));
+const int energy_connected   = 32000+round(214*(total_pkt_rate*2));
 const int energy_PSM         = 0;
 const int energy_idle        = 21600;
 
