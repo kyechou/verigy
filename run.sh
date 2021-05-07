@@ -52,7 +52,7 @@ for timers in "3,9,30,10" "3,9,50,20"; do # (4, 6, 10, 10) (RRC, idle, eDRX, PSM
         name="timers-$timers.model_time-$model_time"
 
         prism ctmc.prism ctmc.props -mtbdd \
-            -javamaxmem 8g -timeout 1800 \
+            -javamaxmem 8g -timeout 3600 \
             -const pkt_rate="1/20:3/20:10/20" \
             -const qlen=50 \
             -const throughput=25 \
