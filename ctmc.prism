@@ -18,7 +18,6 @@ const int qlen                 ; // queue length in # of packets
 const int throughput           ; // # pkts/s
 const int UL_throughput        = throughput; // # pkts/s
 const int DL_throughput        = throughput; // # pkts/s
-//const double uplink_req_accept_rate = 1;
 
 // timer values
 const int timer_RRC            ; // s (10 s)
@@ -67,9 +66,9 @@ module UE
                 & (eDRX_timer'=eDRX_timer-1)
             + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
                 & (idle_timer'=idle_timer-1)
-                & (eDRX_timer'=eDRX_timer-1)
-            + (1 - uplink_pkt_rate - downlink_pkt_rate) :
-                (idle_timer'=idle_timer-1) & (eDRX_timer'=eDRX_timer-1);
+                & (eDRX_timer'=eDRX_timer-1);
+    [time] op_state=idle & idle_timer>0 & eDRX_timer>0 & UL_req=false
+            -> (idle_timer'=idle_timer-1) & (eDRX_timer'=eDRX_timer-1);
 
     [] op_state=PSM & PSM_timer=0 // PSM expires; leave PSM cycle
             -> (op_state'=paging) & (prev_state'=PSM);
@@ -79,15 +78,14 @@ module UE
             -> uplink_pkt_rate : (UL_req'=true) & (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
                 & (PSM_timer'=PSM_timer-1)
             + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
-                & (PSM_timer'=PSM_timer-1)
-            + (1 - uplink_pkt_rate - downlink_pkt_rate) :
-                (PSM_timer'=PSM_timer-1);
+                & (PSM_timer'=PSM_timer-1);
+    [time] op_state=PSM & PSM_timer>0 & UL_req=false
+            -> (PSM_timer'=PSM_timer-1);
 
     [] op_state=paging & prev_state=idle & UL_req=false & DL_pkts=0
             -> (op_state'=prev_state);
     [] op_state=paging & prev_state=idle & UL_req=true & DL_pkts=0
             -> (UL_req'=false) & (op_state'=connected);
-            //+ (1-uplink_req_accept_rate) : (UL_req'=false) & (op_state'=prev_state);
     [] op_state=paging & prev_state=idle & DL_pkts>0
             -> (UL_req'=false) & (op_state'=connected);
 
@@ -108,7 +106,6 @@ module UE
             -> (op_state'=prev_state);
     [] op_state=paging & prev_state=PSM & PSM_timer>0 & UL_req=true
             -> (UL_req'=false) & (op_state'=connected);
-            //+ (1-uplink_req_accept_rate) : (UL_req'=false) & (op_state'=prev_state);
 
     [] op_state=connected & rrc_timer=0 // RRC inactivity timer expires; go idle
             -> (op_state'=idle) & (idle_timer'=timer_idle) & (PSM_timer'=timer_PSM);
@@ -120,8 +117,9 @@ module UE
             -> uplink_pkt_rate : (UL_pkts'=(UL_pkts=qlen ? qlen : UL_pkts+1))
                 & (rrc_timer'=rrc_timer - 1)
             + downlink_pkt_rate : (DL_pkts'=(DL_pkts=qlen ? qlen : DL_pkts+1))
-                & (rrc_timer'=rrc_timer - 1)
-            + (1 - uplink_pkt_rate - downlink_pkt_rate) : (rrc_timer'=rrc_timer - 1);
+                & (rrc_timer'=rrc_timer - 1);
+    [time] op_state=connected & rrc_timer>0 & UL_pkts=0 & DL_pkts=0
+            -> (rrc_timer'=rrc_timer - 1);
 
     [] op_state=uplink & UL_pkts=0
             -> (op_state'=connected) & (rrc_timer'=timer_RRC);
