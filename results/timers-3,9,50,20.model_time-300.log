@@ -1,0 +1,439 @@
+PRISM
+=====
+
+Version: 4.6.dev
+Date: Fri May 07 16:46:04 CDT 2021
+Hostname: arch-3111
+Memory limits: cudd=1g, java(heap)=8g
+Command line: prism ctmc.prism ctmc.props -mtbdd -javamaxmem 8g -timeout 1800 -const 'pkt_rate=1/20:3/20:10/20' -const qlen=50 -const throughput=25 -const timer_RRC=3 -const timer_idle=9 -const timer_eDRX=50 -const timer_PSM=20 -const model_time=300 -property 'cumulative_time,cumulative_energy' -exportresults '/home/kyc/cs/projects/verigy/results/timers-3,9,50,20.model_time-300.results.csv:csv'
+
+Parsing model file "ctmc.prism"...
+
+Type:        CTMC
+Modules:     UE 
+Variables:   op_state prev_state UL_req UL_pkts DL_pkts rrc_timer idle_timer eDRX_timer PSM_timer 
+
+Parsing properties file "ctmc.props"...
+
+4 properties:
+(1) "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+(2) "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+(3) "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+(4) "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.05,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Building model...
+Model constants: pkt_rate=0.05,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 106.11 seconds (average 0.064155, setup 0.00)
+
+Time for model construction: 106.381 seconds.
+
+Type:        CTMC
+States:      11590128 (1 initial)
+Transitions: 18043382
+
+Rate matrix: 17397 nodes (4 terminal), 18043382 minterms, vars: 36r/36c
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 89 (of 824): 5.06 sec so far
+Iteration 143 (of 824): 10.11 sec so far
+Iteration 197 (of 824): 15.12 sec so far
+Iteration 251 (of 824): 20.14 sec so far
+Iteration 305 (of 824): 25.14 sec so far
+Iteration 360 (of 824): 30.23 sec so far
+Iteration 415 (of 824): 35.28 sec so far
+Iteration 470 (of 824): 40.34 sec so far
+Iteration 524 (of 824): 45.40 sec so far
+Iteration 579 (of 824): 50.48 sec so far
+Iteration 634 (of 824): 55.59 sec so far
+Iteration 689 (of 824): 60.60 sec so far
+Iteration 740 (of 824): 65.65 sec so far
+Iteration 794 (of 824): 70.71 sec so far
+
+Iterative method: 824 iterations in 73.26 seconds (average 0.088864, setup 0.04)
+
+Value in the initial state: 262.545921139381
+
+Time for model checking: 73.347 seconds.
+
+Result: 262.545921139381
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.05,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 62 (of 824): 5.06 sec so far
+Iteration 91 (of 824): 10.26 sec so far
+Iteration 117 (of 824): 15.45 sec so far
+Iteration 141 (of 824): 20.72 sec so far
+Iteration 164 (of 824): 25.86 sec so far
+Iteration 186 (of 824): 31.02 sec so far
+Iteration 206 (of 824): 36.12 sec so far
+Iteration 225 (of 824): 41.28 sec so far
+Iteration 244 (of 824): 46.33 sec so far
+Iteration 262 (of 824): 51.39 sec so far
+Iteration 279 (of 824): 56.46 sec so far
+Iteration 296 (of 824): 61.54 sec so far
+Iteration 312 (of 824): 66.70 sec so far
+Iteration 329 (of 824): 71.97 sec so far
+Iteration 344 (of 824): 77.05 sec so far
+Iteration 360 (of 824): 82.27 sec so far
+Iteration 375 (of 824): 87.43 sec so far
+Iteration 388 (of 824): 92.56 sec so far
+Iteration 404 (of 824): 98.17 sec so far
+Iteration 419 (of 824): 103.26 sec so far
+Iteration 433 (of 824): 108.46 sec so far
+Iteration 447 (of 824): 113.77 sec so far
+Iteration 461 (of 824): 119.09 sec so far
+Iteration 474 (of 824): 124.14 sec so far
+Iteration 487 (of 824): 129.28 sec so far
+Iteration 500 (of 824): 134.51 sec so far
+Iteration 513 (of 824): 139.81 sec so far
+Iteration 526 (of 824): 145.12 sec so far
+Iteration 539 (of 824): 150.53 sec so far
+Iteration 551 (of 824): 155.63 sec so far
+Iteration 563 (of 824): 160.78 sec so far
+Iteration 575 (of 824): 166.00 sec so far
+Iteration 587 (of 824): 171.56 sec so far
+Iteration 599 (of 824): 176.92 sec so far
+Iteration 610 (of 824): 182.00 sec so far
+Iteration 621 (of 824): 187.18 sec so far
+Iteration 632 (of 824): 192.40 sec so far
+Iteration 643 (of 824): 197.71 sec so far
+Iteration 654 (of 824): 203.03 sec so far
+Iteration 664 (of 824): 208.03 sec so far
+Iteration 674 (of 824): 213.11 sec so far
+Iteration 684 (of 824): 218.19 sec so far
+Iteration 694 (of 824): 223.35 sec so far
+Iteration 704 (of 824): 228.55 sec so far
+Iteration 714 (of 824): 233.73 sec so far
+Iteration 724 (of 824): 238.79 sec so far
+Iteration 734 (of 824): 243.85 sec so far
+Iteration 744 (of 824): 249.06 sec so far
+Iteration 754 (of 824): 254.34 sec so far
+Iteration 764 (of 824): 259.40 sec so far
+Iteration 774 (of 824): 264.79 sec so far
+Iteration 783 (of 824): 270.13 sec so far
+Iteration 791 (of 824): 275.14 sec so far
+Iteration 801 (of 824): 280.92 sec so far
+Iteration 811 (of 824): 286.10 sec so far
+Iteration 821 (of 824): 291.33 sec so far
+
+Iterative method: 824 iterations in 292.98 seconds (average 0.355530, setup 0.02)
+
+Value in the initial state: 2786779.213824931
+
+Time for model checking: 293.302 seconds.
+
+Result: 2786779.213824931
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.2,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Building model...
+Model constants: pkt_rate=0.2,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 43.16 seconds (average 0.026094, setup 0.00)
+
+Time for model construction: 43.321 seconds.
+
+Type:        CTMC
+States:      11590128 (1 initial)
+Transitions: 18043382
+
+Rate matrix: 17397 nodes (4 terminal), 18043382 minterms, vars: 36r/36c
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 81 (of 824): 5.02 sec so far
+Iteration 132 (of 824): 10.11 sec so far
+Iteration 183 (of 824): 15.51 sec so far
+Iteration 236 (of 824): 20.56 sec so far
+
+Steady state detected at iteration 272
+
+Iterative method: 272 iterations in 24.13 seconds (average 0.088625, setup 0.02)
+
+Value in the initial state: 251.43320281013467
+
+Time for model checking: 24.157 seconds.
+
+Result: 251.43320281013467
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.2,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 58 (of 824): 5.47 sec so far
+Iteration 85 (of 824): 10.64 sec so far
+Iteration 106 (of 824): 16.23 sec so far
+Iteration 125 (of 824): 21.46 sec so far
+Iteration 140 (of 824): 26.52 sec so far
+Iteration 156 (of 824): 31.85 sec so far
+Iteration 169 (of 824): 37.02 sec so far
+Iteration 182 (of 824): 42.17 sec so far
+Iteration 193 (of 824): 47.20 sec so far
+Iteration 205 (of 824): 52.66 sec so far
+Iteration 215 (of 824): 57.69 sec so far
+Iteration 226 (of 824): 63.45 sec so far
+Iteration 237 (of 824): 68.86 sec so far
+Iteration 247 (of 824): 74.28 sec so far
+Iteration 257 (of 824): 80.01 sec so far
+Iteration 267 (of 824): 85.41 sec so far
+
+Steady state detected at iteration 272
+
+Iterative method: 272 iterations in 88.44 seconds (average 0.325063, setup 0.02)
+
+Value in the initial state: 4206820.5579061415
+
+Time for model checking: 88.53 seconds.
+
+Result: 4206820.5579061415
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.35,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Building model...
+Model constants: pkt_rate=0.35,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 42.74 seconds (average 0.025839, setup 0.00)
+
+Time for model construction: 42.893 seconds.
+
+Type:        CTMC
+States:      11590128 (1 initial)
+Transitions: 18043382
+
+Rate matrix: 17397 nodes (4 terminal), 18043382 minterms, vars: 36r/36c
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 82 (of 824): 5.04 sec so far
+Iteration 131 (of 824): 10.13 sec so far
+
+Steady state detected at iteration 175
+
+Iterative method: 175 iterations in 14.93 seconds (average 0.085143, setup 0.03)
+
+Value in the initial state: 241.61236238490753
+
+Time for model checking: 14.954 seconds.
+
+Result: 241.61236238490753
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.35,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5157] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25433] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 56 (of 824): 5.06 sec so far
+Iteration 80 (of 824): 10.22 sec so far
+Iteration 98 (of 824): 15.55 sec so far
+Iteration 117 (of 824): 20.76 sec so far
+Iteration 133 (of 824): 25.91 sec so far
+Iteration 147 (of 824): 31.03 sec so far
+Iteration 160 (of 824): 36.32 sec so far
+Iteration 173 (of 824): 41.65 sec so far
+Iteration 185 (of 824): 47.09 sec so far
+Iteration 195 (of 824): 52.16 sec so far
+Iteration 206 (of 824): 57.41 sec so far
+Iteration 216 (of 824): 62.53 sec so far
+Iteration 225 (of 824): 67.69 sec so far
+
+Steady state detected at iteration 227
+
+Iterative method: 227 iterations in 68.65 seconds (average 0.302317, setup 0.02)
+
+Value in the initial state: 4623927.870756153
+
+Time for model checking: 68.714 seconds.
+
+Result: 4623927.870756153
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.5,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Building model...
+Model constants: pkt_rate=0.5,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 40.96 seconds (average 0.024765, setup 0.00)
+
+Time for model construction: 41.053 seconds.
+
+Type:        CTMC
+States:      11590128 (1 initial)
+Transitions: 18043382
+
+Rate matrix: 17397 nodes (4 terminal), 18043382 minterms, vars: 36r/36c
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5156] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25431] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 80 (of 824): 5.12 sec so far
+Iteration 111 (of 824): 10.16 sec so far
+Iteration 147 (of 824): 15.19 sec so far
+Iteration 164 (of 824): 20.67 sec so far
+Iteration 170 (of 824): 25.90 sec so far
+Iteration 175 (of 824): 32.37 sec so far
+Iteration 178 (of 824): 37.38 sec so far
+Iteration 181 (of 824): 43.65 sec so far
+Iteration 184 (of 824): 50.51 sec so far
+Iteration 186 (of 824): 55.78 sec so far
+Iteration 188 (of 824): 61.33 sec so far
+Iteration 190 (of 824): 67.68 sec so far
+Iteration 192 (of 824): 74.55 sec so far
+Iteration 194 (of 824): 81.92 sec so far
+Iteration 196 (of 824): 89.81 sec so far
+Iteration 198 (of 824): 98.44 sec so far
+Iteration 200 (of 824): 107.41 sec so far
+Iteration 202 (of 824): 116.38 sec so far
+Iteration 204 (of 824): 125.73 sec so far
+Iteration 206 (of 824): 134.63 sec so far
+Iteration 208 (of 824): 143.23 sec so far
+Iteration 210 (of 824): 152.02 sec so far
+Iteration 212 (of 824): 160.92 sec so far
+Iteration 214 (of 824): 169.71 sec so far
+Iteration 216 (of 824): 178.17 sec so far
+Iteration 218 (of 824): 183.34 sec so far
+Iteration 232 (of 824): 188.39 sec so far
+
+Steady state detected at iteration 233
+
+Iterative method: 233 iterations in 188.76 seconds (average 0.810013, setup 0.03)
+
+Value in the initial state: 234.87206019257331
+
+Time for model checking: 188.917 seconds.
+
+Result: 234.87206019257331
+
+---------------------------------------------------------------------
+
+Model checking: "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+Model constants: pkt_rate=0.5,qlen=50,throughput=25,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+Property constants: model_time=300
+
+Computing rewards...
+Engine: MTBDD
+
+Computing diagonals MTBDD... [nodes=5156] [100.7 Kb]
+Building iteration matrix MTBDD... [nodes=25431] [496.7 Kb]
+
+Uniformisation: q.t = 2.040000 x 300.000000 = 612.000000
+Fox-Glynn: left = 436, right = 824
+
+Starting iterations...
+Iteration 66 (of 824): 5.35 sec so far
+Iteration 102 (of 824): 10.44 sec so far
+Iteration 131 (of 824): 15.51 sec so far
+Iteration 155 (of 824): 20.54 sec so far
+Iteration 180 (of 824): 25.57 sec so far
+Iteration 202 (of 824): 30.68 sec so far
+Iteration 217 (of 824): 36.08 sec so far
+Iteration 231 (of 824): 41.21 sec so far
+Iteration 246 (of 824): 46.26 sec so far
+Iteration 266 (of 824): 51.36 sec so far
+
+Steady state detected at iteration 281
+
+Iterative method: 281 iterations in 53.31 seconds (average 0.189641, setup 0.02)
+
+Value in the initial state: 4730745.325942016
+
+Time for model checking: 53.359 seconds.
+
+Result: 4730745.325942016
+
+Exporting results to file "/home/kyc/cs/projects/verigy/results/timers-3,9,50,20.model_time-300.results.csv"...
+

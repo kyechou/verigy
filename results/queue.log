@@ -1,0 +1,2428 @@
+PRISM
+=====
+
+Version: 4.6.dev
+Date: Fri May 07 16:02:48 CDT 2021
+Hostname: arch-3111
+Memory limits: cudd=1g, java(heap)=8g
+Command line: prism ctmc.prism ctmc.props -mtbdd -javamaxmem 8g -timeout 1800 -const 'pkt_rate=1:1:3' -const 'qlen=10:10:30' -const 'throughput=2:4:10' -const timer_RRC=3 -const timer_idle=9 -const timer_eDRX=50 -const timer_PSM=20 -const model_time=300 -property 'fullq,halfq' -exportresults '/home/kyc/cs/projects/verigy/results/queue.results.csv:csv'
+
+Parsing model file "ctmc.prism"...
+
+Type:        CTMC
+Modules:     UE
+Variables:   op_state prev_state UL_req UL_pkts DL_pkts rrc_timer idle_timer eDRX_timer PSM_timer
+
+Parsing properties file "ctmc.props"...
+
+4 properties:
+(1) "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+(2) "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+(3) "cumulative_time": R{"total_time"}=? [ C<=model_time ]
+(4) "cumulative_energy": R{"energy"}=? [ C<=model_time ]
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 4.74 seconds (average 0.002863, setup 0.00)
+
+Time for model construction: 4.769 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 5795 nodes (3 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.025 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.54 seconds (average 0.002745, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.615 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.32 seconds (average 0.002614, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.378 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 4.13 seconds (average 0.002498, setup 0.00)
+
+Time for model construction: 4.168 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 5795 nodes (3 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.51 seconds (average 0.002726, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.545 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.61 seconds (average 0.002785, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.651 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 4.14 seconds (average 0.002504, setup 0.00)
+
+Time for model construction: 4.164 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 5795 nodes (3 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.51 seconds (average 0.002726, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.543 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.57 seconds (average 0.002761, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 5803 nodes (3 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 5923 nodes (5 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.612 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 19.20 seconds (average 0.011609, setup 0.00)
+
+Time for model construction: 19.255 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 8506 nodes (3 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 20.42 seconds (average 0.012343, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 20.508 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 20.32 seconds (average 0.012282, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 20.419 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 19.14 seconds (average 0.011575, setup 0.00)
+
+Time for model construction: 19.229 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 8506 nodes (3 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 15.58 seconds (average 0.009418, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 15.694 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 12.85 seconds (average 0.007767, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 12.918 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 12.00 seconds (average 0.007256, setup 0.00)
+
+Time for model construction: 12.039 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 8506 nodes (3 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 12.68 seconds (average 0.007663, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 12.754 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 12.93 seconds (average 0.007817, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 8514 nodes (3 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 8642 nodes (5 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 13.014 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 37.77 seconds (average 0.022835, setup 0.00)
+
+Time for model construction: 37.836 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 10646 nodes (3 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 36.53 seconds (average 0.022086, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.008000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 36.625 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 37.01 seconds (average 0.022375, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 37.156 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 35.26 seconds (average 0.021318, setup 0.00)
+
+Time for model construction: 35.321 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 10646 nodes (3 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 35.82 seconds (average 0.021656, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.008000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 35.916 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 36.65 seconds (average 0.022156, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 36.796 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=1,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=1,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 34.66 seconds (average 0.020957, setup 0.00)
+
+Time for model construction: 34.723 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 10646 nodes (3 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 35.87 seconds (average 0.021684, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 35.973 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=1,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 37.09 seconds (average 0.022425, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 10654 nodes (3 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 10783 nodes (5 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 37.224 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.94 seconds (average 0.002383, setup 0.00)
+
+Time for model construction: 3.98 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.10 seconds (average 0.002481, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.002000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.141 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 3.94 seconds (average 0.002382, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 3.987 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.86 seconds (average 0.002333, setup 0.00)
+
+Time for model construction: 3.882 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.07 seconds (average 0.002459, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.106 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.18 seconds (average 0.002526, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.221 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.77 seconds (average 0.002281, setup 0.00)
+
+Time for model construction: 3.794 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.08 seconds (average 0.002466, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.114 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.05 seconds (average 0.002450, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.093 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 9.70 seconds (average 0.005865, setup 0.00)
+
+Time for model construction: 9.743 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.36 seconds (average 0.006265, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.429 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.50 seconds (average 0.006348, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.587 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 9.59 seconds (average 0.005796, setup 0.00)
+
+Time for model construction: 9.623 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.36 seconds (average 0.006264, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.429 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.30 seconds (average 0.006226, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.379 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 9.74 seconds (average 0.005891, setup 0.00)
+
+Time for model construction: 9.713 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.50 seconds (average 0.006348, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.002000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.57 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 10.55 seconds (average 0.006376, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 10.636 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 20.55 seconds (average 0.012422, setup 0.00)
+
+Time for model construction: 20.604 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 21.57 seconds (average 0.013039, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.008000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 21.659 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 20.98 seconds (average 0.012683, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 21.115 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 20.42 seconds (average 0.012345, setup 0.00)
+
+Time for model construction: 20.465 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 21.42 seconds (average 0.012949, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 21.496 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 20.59 seconds (average 0.012447, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 20.707 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=2,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=2,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 19.72 seconds (average 0.011923, setup 0.00)
+
+Time for model construction: 19.772 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 21.47 seconds (average 0.012979, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.008000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 21.576 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=2,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 20.45 seconds (average 0.012363, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.008000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 20.589 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.91 seconds (average 0.002362, setup 0.00)
+
+Time for model construction: 3.932 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.18 seconds (average 0.002529, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.222 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=10,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.48 seconds (average 0.002709, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.003000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.523 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.62 seconds (average 0.002186, setup 0.00)
+
+Time for model construction: 3.659 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 3.90 seconds (average 0.002357, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 3.946 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=10,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 3.54 seconds (average 0.002143, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 3.579 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 3.72 seconds (average 0.002249, setup 0.00)
+
+Time for model construction: 3.742 seconds.
+
+Type:        CTMC
+States:      580821 (1 initial)
+Transitions: 908514
+
+Rate matrix: 6943 nodes (4 terminal), 908514 minterms, vars: 32r/32c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 4.01 seconds (average 0.002427, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 4.055 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=10,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 3.53 seconds (average 0.002135, setup 0.00)
+
+States:      580821 (1 initial)
+Transitions: 908514
+
+Transition matrix: 6955 nodes (4 terminal), 908514 minterms, vars: 34r/34c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 1826 nodes (4 terminal), 580821 minterms
+Embedded Markov chain: 7075 nodes (6 terminal), 908514 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 580821, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 3.561 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 8.72 seconds (average 0.005275, setup 0.00)
+
+Time for model construction: 8.761 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.81 seconds (average 0.005929, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.881 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=20,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.41 seconds (average 0.005689, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.493 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 8.75 seconds (average 0.005289, setup 0.00)
+
+Time for model construction: 8.784 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.71 seconds (average 0.005869, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.00 seconds (average 0.004000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.77 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=20,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.22 seconds (average 0.005574, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.006000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.303 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 8.99 seconds (average 0.005434, setup 0.00)
+
+Time for model construction: 9.024 seconds.
+
+Type:        CTMC
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Rate matrix: 10286 nodes (4 terminal), 3298284 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.35 seconds (average 0.005654, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.007000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.422 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=20,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 9.43 seconds (average 0.005700, setup 0.00)
+
+States:      2114411 (1 initial)
+Transitions: 3298284
+
+Transition matrix: 10298 nodes (4 terminal), 3298284 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 2868 nodes (4 terminal), 2114411 minterms
+Embedded Markov chain: 10426 nodes (6 terminal), 3298284 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 2114411, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 9.519 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 17.63 seconds (average 0.010658, setup 0.00)
+
+Time for model construction: 17.686 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 18.77 seconds (average 0.011351, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.010000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 18.873 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=30,throughput=2,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 19.65 seconds (average 0.011882, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.009000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.001000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 19.806 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 18.36 seconds (average 0.011101, setup 0.00)
+
+Time for model construction: 18.422 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 19.16 seconds (average 0.011583, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.010000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 19.256 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=30,throughput=6,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 18.91 seconds (average 0.011431, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.010000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 19.572 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "fullq": P=? [ UL_pkts<qlen&DL_pkts<qlen ]
+Model constants: pkt_rate=3,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building model...
+Model constants: pkt_rate=3,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Computing reachable states...
+
+Reachability (BFS): 1654 iterations in 18.58 seconds (average 0.011232, setup 0.00)
+
+Time for model construction: 18.859 seconds.
+
+Type:        CTMC
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Rate matrix: 13024 nodes (4 terminal), 7035874 minterms, vars: 34r/34c
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.001 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 19.86 seconds (average 0.012004, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.010000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 20.186 seconds.
+
+Result: 1.0
+
+---------------------------------------------------------------------
+
+Model checking: "halfq": P=? [ UL_pkts/qlen<0.5&DL_pkts/qlen<0.5 ]
+Model constants: pkt_rate=3,qlen=30,throughput=10,timer_RRC=3,timer_idle=9,timer_eDRX=50,timer_PSM=20
+
+Building deterministic automaton (for "L0")...
+DFA has 3 states, 1 goal states.
+Time for deterministic automaton translation: 0.0 seconds.
+
+Constructing MC-DFA product...
+
+Reachability (BFS): 1654 iterations in 19.35 seconds (average 0.011700, setup 0.00)
+
+States:      4513820 (1 initial)
+Transitions: 7035874
+
+Transition matrix: 13036 nodes (4 terminal), 7035874 minterms, vars: 36r/36c
+
+Skipping BSCC computation since acceptance is defined via goal states...
+
+Computing reachability probabilities...
+
+Diagonals vector: 3781 nodes (4 terminal), 4513820 minterms
+Embedded Markov chain: 13165 nodes (6 terminal), 7035874 minterms
+
+Prob0: 1 iterations in 0.01 seconds (average 0.005000, setup 0.00)
+
+Prob1: 1 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+yes = 4513820, no = 0, maybe = 0
+
+Value in the initial state: 1.0
+
+Time for model checking: 19.471 seconds.
+
+Result: 1.0
+
+Exporting results to file "/home/kyc/cs/projects/verigy/results/queue.results.csv"...
+
