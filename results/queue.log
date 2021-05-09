@@ -5,7 +5,7 @@ Version: 4.6.dev
 Date: Fri May 07 16:02:48 CDT 2021
 Hostname: arch-3111
 Memory limits: cudd=1g, java(heap)=8g
-Command line: prism ctmc.prism ctmc.props -mtbdd -javamaxmem 8g -timeout 1800 -const 'pkt_rate=1:1:3' -const 'qlen=10:10:30' -const 'throughput=2:4:10' -const timer_RRC=3 -const timer_idle=9 -const timer_eDRX=50 -const timer_PSM=20 -const model_time=300 -property 'fullq,halfq' -exportresults '/home/kyc/cs/projects/verigy/results/queue.results.csv:csv'
+Command line: prism ctmc.prism ctmc.props -mtbdd -javamaxmem 8g -timeout 1800 -const 'pkt_rate=1:1:3' -const 'qlen=10:10:30' -const 'throughput=2:4:10' -const timer_RRC=3 -const timer_idle=9 -const timer_eDRX=50 -const timer_PSM=20 -const model_time=300 -property 'fullq,halfq' -exportresults '/home/kyc/cs/projects/veriot/results/queue.results.csv:csv'
 
 Parsing model file "ctmc.prism"...
 
@@ -2424,5 +2424,5 @@ Time for model checking: 19.471 seconds.
 
 Result: 1.0
 
-Exporting results to file "/home/kyc/cs/projects/verigy/results/queue.results.csv"...
+Exporting results to file "/home/kyc/cs/projects/veriot/results/queue.results.csv"...
 

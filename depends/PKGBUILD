@@ -1,9 +1,9 @@
-pkgname=verigy-dev
+pkgname=veriot-dev
 pkgver=0.0.1
 pkgrel=1
-pkgdesc="meta package for verigy development"
+pkgdesc="meta package for veriot development"
 arch=('any')
-url="https://github.com/kyechou/verigy"
+url="https://github.com/kyechou/veriot"
 license=()
 depends=('prismmodelchecker-git')
 makedepends=()
